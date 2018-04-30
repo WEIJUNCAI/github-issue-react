@@ -1,0 +1,14 @@
+.state {
+    display: inline-block;
+    padding: 4px 8px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
+    background-color: #6a737d;
+    border-radius: 3px;
+}
+
+.state-green {
+    background-color: #2cbe4e;
+}
