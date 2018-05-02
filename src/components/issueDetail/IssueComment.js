@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
-import { getTimeDiffFromNow } from '../utils/timeUtils';
-import { insertMentionLinks } from '../utils/stringUtils';
-import './css/IssueComment.css';
+import { getTimeDiffFromNow } from '../../utils/timeUtils';
+import { insertMentionLinks } from '../../utils/stringUtils';
+import '../css/IssueComment.css';
 
 const IssueComment = ({user, timeStamp, authorAssociation, content}) => {
   const timeDiffStr = getTimeDiffFromNow(timeStamp);

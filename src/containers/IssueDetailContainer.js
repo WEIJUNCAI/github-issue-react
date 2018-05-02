@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { getIssue, getComments } from '../redux/actions';
-import IssueDetailPage from '../components/IssueDetailPage'
+import IssueDetailPage from '../components/issueDetail/IssueDetailPage'
 
 function mapStateToProps(state, ownProps) {
     return {

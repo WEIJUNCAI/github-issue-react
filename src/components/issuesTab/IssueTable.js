@@ -13,8 +13,8 @@ const IssueTable = ({ owner, repo, issues }) => {
             repo={repo}
             title={issue.title}
             number={issue.number}
-            isOpen={true}
-            timeStamp={issue.created_at}
+            createdAt={issue.created_at}
+            closedAt={issue.closed_at}
             user={issue.user}
             labels={issue.labels}
             numComments={issue.comments} />

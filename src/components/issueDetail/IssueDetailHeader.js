@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getTimeDiffFromNow } from '../utils/timeUtils';
+import { getTimeDiffFromNow } from '../../utils/timeUtils';
 
-import issueOpened from '../images/octicons/svg/issue-opened.svg';
-import issueClosed from '../images/octicons/svg/issue-closed.svg';
-import './css/IssueDetailHeader.css';
+import issueOpenedIcon from '../../images/octicons/svg/issue-opened-white.svg';
+import issueClosedIcon from '../../images/octicons/svg/issue-closed-white.svg';
+import '../css/IssueDetailHeader.css';
 
 
 const IssueDetailHeader = ({ title, number, isOpen, timeStamp, numComments, user }) => {
-  let icon, issueStatusText;
+  let icon, issueStatusText, stateColorClass;
   if(isOpen){
-    icon = issueOpened;
+    icon = issueOpenedIcon;
     issueStatusText = "Open";
+    stateColorClass = "state-green";
   } else {
-    icon = issueClosed;
+    icon = issueClosedIcon;
     issueStatusText = "Closed";
+    stateColorClass = "state-red";
   }
 
   const timeDiffStr = getTimeDiffFromNow(timeStamp);
@@ -33,7 +35,7 @@ const IssueDetailHeader = ({ title, number, isOpen, timeStamp, numComments, user
 
       <div className="row my-2 pb-3">
         <div className="col">
-          <div className="state state-green">
+          <div className={`state ${stateColorClass}`}>
             <img className="align-baseline" src={icon} alt=""/>
             <span className="mx-1">{issueStatusText}</span>
           </div>

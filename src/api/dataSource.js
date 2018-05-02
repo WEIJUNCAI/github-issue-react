@@ -5,21 +5,37 @@ const REMOTE_API_ROOT = "https://api.github.com";
 
 // Retrieve all issues in a page
 
-export function getIssues(owner, repo, page = 1) {
+export function getIssues(owner, repo, searchStr, page = 1) {
   let pageLinks, pageCount;
-  const url = `${REMOTE_API_ROOT}/repos/${owner}/${repo}/issues?page=${page}`;
+  const querySearchStr = `q=repo:${owner}/${repo} ${searchStr}`;
+
+  // - if the search string is null or undifined, it means we do not use search API
+  //    but use issue API which by default only gets open issues;
+  // - if the search string exists (or empty, which means gets all issues),
+  //    we use search API
+
+  // depending on the API we use, we results returned has different format
+
+  const useSearchApi = searchStr || searchStr === "";
+  const url = useSearchApi ? 
+    `${REMOTE_API_ROOT}/search/issues?page=${page}&${querySearchStr}`
+  : `${REMOTE_API_ROOT}/repos/${owner}/${repo}/issues?page=${page}`;
+
   return fetch(url)
         .then(response => {
                 pageLinks = parseLink(response.headers.get("Link"));
                 pageCount = getPageCount(pageLinks);
                 return response.json();
               })
-        .then(json =>{ return {pageLinks, pageCount, data: json}; })
+        .then(json =>{ 
+                const data = useSearchApi ? json.items : json;
+                return {pageLinks, pageCount, data}; })
         .catch(error => Promise.reject(error));
 }
 
 
 // Retrieve a single issue using its identifying number
+// does not contain its comments
 
 export function getIssue(owner, repo, number) {
   const url = `${REMOTE_API_ROOT}/repos/${owner}/${repo}/issues/${number}`;
@@ -29,6 +45,8 @@ export function getIssue(owner, repo, number) {
         .then(json => json)
         .catch(error => Promise.reject(error));
 }
+
+// Retrieve all comments associated with an issue
 
 export function getComments(commentsUrl) {
 

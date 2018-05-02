@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { getIssues } from '../redux/actions';
-import IssueTab from '../components/IssueTab'
+import IssueTab from '../components/issuesTab/IssueTab'
 
 function mapStateToProps(state, ownProps) {
     return {

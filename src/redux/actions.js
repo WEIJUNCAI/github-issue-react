@@ -75,10 +75,10 @@ export function getIssuesFailure(error) {
 }
 
 // Thunk action creator
-export function getIssues(owner, repo, page) {
+export function getIssues(owner, repo, searchStr, page) {
  return dispatch => {
    dispatch(getIssuesBegin());
-   API.getIssues(owner, repo, page)
+   API.getIssues(owner, repo, searchStr, page)
       // json data returned from API is an array of issues
       .then(data => dispatch(getIssuesSuccess(data)),
             error => dispatch(getIssuesFailure(error)));

@@ -1,17 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import IssueLabels from './IssueLabels';
-import { getTimeDiffFromNow } from '../utils/timeUtils';
-import './css/IssueEntry.css';
-import issueOpened from '../images/octicons/svg/issue-opened.svg';
-import issueClosed from '../images/octicons/svg/issue-closed.svg';
-import comment from '../images/octicons/svg/comment.svg';
+import IssueLabels from '../IssueLabels';
+import { getTimeDiffFromNow } from '../../utils/timeUtils';
+import '../css/IssueEntry.css';
+import issueOpenedIcon from '../../images/octicons/svg/issue-opened-green.svg';
+import issueClosedIcon from '../../images/octicons/svg/issue-closed-red.svg';
+import comment from '../../images/octicons/svg/comment.svg';
 
-const IssueEntry = ({ owner, repo, title, number, numComments, isOpen, timeStamp, user, labels }) => {
-  const icon = isOpen ? issueOpened : issueClosed;
-  const timeDiffStr = getTimeDiffFromNow(timeStamp);
-
+const IssueEntry = ({ owner, repo, title, number, numComments, createdAt, closedAt, user, labels }) => {
+  let icon, timeDiffStr, verb;
+  if(closedAt){
+    icon = issueClosedIcon;
+    timeDiffStr = getTimeDiffFromNow(closedAt);
+    verb = "was closed";
+  } else {
+    icon = issueOpenedIcon;
+    timeDiffStr = getTimeDiffFromNow(createdAt);
+    verb = "opened";
+  }
+  
   const commentLinkIcon = numComments !== 0 ? (
     <div className="col-1 pt-1">
       <Link className="text-muted" 
@@ -32,7 +40,7 @@ const IssueEntry = ({ owner, repo, title, number, numComments, isOpen, timeStamp
           <div className="row">
             <div className="col">
               <small className="text-muted">
-                <span>{`#${number}`}</span> opened&nbsp;
+                <span>{`#${number}`}</span> {verb}&nbsp;
                 <span>{timeDiffStr}</span> by&nbsp;
                 <a className="text-muted" href={`https://github.com/${user.login}`}>{user.login}</a>
               </small>
@@ -53,8 +61,8 @@ IssueEntry.propTypes = {
   title: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
   numComments: PropTypes.number.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  timeStamp: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  closedAt: PropTypes.string,
   user: PropTypes.shape({
     login: PropTypes.string.isRequired,
     avatarUrl: PropTypes.string
