@@ -1,0 +1,25 @@
+ /* sidebar */
+
+ .discussion-sidebar-heading {
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 16px;
+    color: #586069;
+}
+
+.discussion-sidebar-item {
+    padding-top: 10px;
+    font-size: 12px;
+    color: #586069;
+}
+
+.sidebar-assignee .assignee {
+    font-weight: 600;
+    color: #586069;
+    vertical-align: middle;
+}
+
+.link-gray-dark {
+    color: #24292e !important;
+}
+

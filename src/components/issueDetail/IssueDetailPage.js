@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IssueTimeline from './IssueTimeline';
 import IssueDetailHeader from './IssueDetailHeader';
+import IssueDetailSidebar from './IssueDetailSidebar';
 
 class IssueDetailPage extends React.Component {
 
@@ -47,7 +48,7 @@ class IssueDetailPage extends React.Component {
     }
 
     return (
-      <div className="container">
+      <div className="container px-0 mt-3">
         <IssueDetailHeader
           title={issue.title}
           number={issue.number}
@@ -57,13 +58,17 @@ class IssueDetailPage extends React.Component {
           user={issue.user} />
 
         <div className="row">
-          <div className="col-10">
+          <div className="col-9 discussion-timeline">
             <IssueTimeline
               post={issue}
               comments={comments} />
           </div>
 
-          <div className="col-2">
+          <div className="col-3">
+            <IssueDetailSidebar
+              assignees={issue.assignees}
+              labels={issue.labels}
+              milestone={issue.milestone} />
           </div>
         </div>
       </div>

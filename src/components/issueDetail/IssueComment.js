@@ -36,7 +36,7 @@ const IssueComment = ({user, timeStamp, authorAssociation, content}) => {
           </li>
 
           <li className="list-group-item">
-            <div className="mx-1 my-1">
+            <div className="comment-body">
               <ReactMarkdown source={insertMentionLinks(content)} />
             </div>
           </li>
