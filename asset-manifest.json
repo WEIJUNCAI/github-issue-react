@@ -1,0 +1,12 @@
+{
+  "main.css": "static/css/main.3c5d51b4.css",
+  "main.css.map": "static/css/main.3c5d51b4.css.map",
+  "main.js": "static/js/main.60e5e6f3.js",
+  "main.js.map": "static/js/main.60e5e6f3.js.map",
+  "static\\media\\comment.svg": "static/media/comment.70817857.svg",
+  "static\\media\\issue-closed-red.svg": "static/media/issue-closed-red.7610c702.svg",
+  "static\\media\\issue-closed-white.svg": "static/media/issue-closed-white.ea524b45.svg",
+  "static\\media\\issue-opened-green.svg": "static/media/issue-opened-green.166ca980.svg",
+  "static\\media\\issue-opened-white.svg": "static/media/issue-opened-white.db50081b.svg",
+  "static\\media\\unmute.svg": "static/media/unmute.ff59b1c0.svg"
+}
